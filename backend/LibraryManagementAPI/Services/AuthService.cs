@@ -23,12 +23,12 @@ namespace LibraryManagementAPI.Services
 
         public async Task<AuthResponseDto?> Register(RegisterDto registerDto)
         {
-            if (await _context.Users.AnyAsync(u => u.Username == registerDto.Username))
+            if (await _context.Users.AnyAsync(u => u.Username.ToLower() == registerDto.Username.ToLower()))
             {
                 return null;
             }
 
-            if (await _context.Users.AnyAsync(u => u.Email == registerDto.Email))
+            if (await _context.Users.AnyAsync(u => u.Email.ToLower() == registerDto.Email.ToLower()))
             {
                 return null;
             }

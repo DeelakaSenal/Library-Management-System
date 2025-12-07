@@ -33,7 +33,9 @@ namespace LibraryManagementAPI.Controllers
 
                 if (result == null)
                 {
-                    return BadRequest(new { message = "Username or email already exists" });
+                    _logger.LogWarning("Registration failed for username: {Username}, email: {Email}", 
+                        registerDto.Username, registerDto.Email);
+                    return BadRequest(new { message = "Registration failed. Username or email may already exist." });
                 }
 
                 _logger.LogInformation("User {Username} registered successfully", registerDto.Username);

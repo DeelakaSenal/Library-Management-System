@@ -14,9 +14,6 @@ namespace LibraryManagementAPI.DTOs
 
         [StringLength(1000, ErrorMessage = "Description cannot exceed 1000 characters")]
         public string? Description { get; set; }
-
-        [StringLength(20, ErrorMessage = "ISBN cannot exceed 20 characters")]
-        public string? ISBN { get; set; }
     }
 
     public class BookUpdateDto
@@ -31,9 +28,6 @@ namespace LibraryManagementAPI.DTOs
 
         [StringLength(1000, ErrorMessage = "Description cannot exceed 1000 characters")]
         public string? Description { get; set; }
-
-        [StringLength(20, ErrorMessage = "ISBN cannot exceed 20 characters")]
-        public string? ISBN { get; set; }
     }
 
     public class BookResponseDto
@@ -42,7 +36,6 @@ namespace LibraryManagementAPI.DTOs
         public string Title { get; set; } = string.Empty;
         public string Author { get; set; } = string.Empty;
         public string? Description { get; set; }
-        public string? ISBN { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public int? UserId { get; set; }

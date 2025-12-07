@@ -18,9 +18,6 @@ namespace LibraryManagementAPI.Models
         [StringLength(1000, ErrorMessage = "Description cannot exceed 1000 characters")]
         public string? Description { get; set; }
 
-        [StringLength(20, ErrorMessage = "ISBN cannot exceed 20 characters")]
-        public string? ISBN { get; set; }
-
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public DateTime? UpdatedAt { get; set; }

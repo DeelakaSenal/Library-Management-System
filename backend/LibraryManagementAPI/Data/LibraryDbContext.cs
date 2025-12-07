@@ -21,7 +21,6 @@ namespace LibraryManagementAPI.Data
                 entity.HasKey(b => b.Id);
                 entity.Property(b => b.Title).IsRequired();
                 entity.Property(b => b.Author).IsRequired();
-                entity.HasIndex(b => b.ISBN).IsUnique();
 
                 entity.HasOne(b => b.User)
                       .WithMany(u => u.Books)

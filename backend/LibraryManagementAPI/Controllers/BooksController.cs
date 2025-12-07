@@ -35,7 +35,6 @@ namespace LibraryManagementAPI.Controllers
                         Title = b.Title,
                         Author = b.Author,
                         Description = b.Description,
-                        ISBN = b.ISBN,
                         CreatedAt = b.CreatedAt,
                         UpdatedAt = b.UpdatedAt,
                         UserId = b.UserId,
@@ -69,7 +68,6 @@ namespace LibraryManagementAPI.Controllers
                         Title = b.Title,
                         Author = b.Author,
                         Description = b.Description,
-                        ISBN = b.ISBN,
                         CreatedAt = b.CreatedAt,
                         UpdatedAt = b.UpdatedAt,
                         UserId = b.UserId,
@@ -110,21 +108,11 @@ namespace LibraryManagementAPI.Controllers
                 var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
                 int? userId = userIdClaim != null ? int.Parse(userIdClaim.Value) : null;
 
-                if (!string.IsNullOrEmpty(bookDto.ISBN))
-                {
-                    var existingBook = await _context.Books.FirstOrDefaultAsync(b => b.ISBN == bookDto.ISBN);
-                    if (existingBook != null)
-                    {
-                        return BadRequest(new { message = "A book with this ISBN already exists" });
-                    }
-                }
-
                 var book = new Book
                 {
                     Title = bookDto.Title,
                     Author = bookDto.Author,
                     Description = bookDto.Description,
-                    ISBN = bookDto.ISBN,
                     CreatedAt = DateTime.UtcNow,
                     UserId = userId
                 };
@@ -141,7 +129,6 @@ namespace LibraryManagementAPI.Controllers
                         Title = b.Title,
                         Author = b.Author,
                         Description = b.Description,
-                        ISBN = b.ISBN,
                         CreatedAt = b.CreatedAt,
                         UpdatedAt = b.UpdatedAt,
                         UserId = b.UserId,
@@ -181,19 +168,9 @@ namespace LibraryManagementAPI.Controllers
                     return NotFound(new { message = $"Book with ID {id} not found" });
                 }
 
-                if (!string.IsNullOrEmpty(bookDto.ISBN) && bookDto.ISBN != book.ISBN)
-                {
-                    var existingBook = await _context.Books.FirstOrDefaultAsync(b => b.ISBN == bookDto.ISBN && b.Id != id);
-                    if (existingBook != null)
-                    {
-                        return BadRequest(new { message = "A book with this ISBN already exists" });
-                    }
-                }
-
                 book.Title = bookDto.Title;
                 book.Author = bookDto.Author;
                 book.Description = bookDto.Description;
-                book.ISBN = bookDto.ISBN;
                 book.UpdatedAt = DateTime.UtcNow;
 
                 await _context.SaveChangesAsync();
@@ -257,7 +234,6 @@ namespace LibraryManagementAPI.Controllers
                         Title = b.Title,
                         Author = b.Author,
                         Description = b.Description,
-                        ISBN = b.ISBN,
                         CreatedAt = b.CreatedAt,
                         UpdatedAt = b.UpdatedAt,
                         UserId = b.UserId,
