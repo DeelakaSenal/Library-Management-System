@@ -64,7 +64,7 @@ export default function BookList() {
   return (
     <div className="book-list-container">
       <div className="book-list-header">
-        <h1>Library Books</h1>
+        <h1>Explore Books</h1>
         <button className="btn-add" onClick={() => setShowForm(true)}>
           + Add New Book
         </button>
